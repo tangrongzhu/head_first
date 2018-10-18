@@ -1,0 +1,17 @@
+Debug Rubby:
+
+inspect # inspecting objects, suitable for debugging.  E.g puts input.inspect
+
+p # shortcut, works like puts, it calls inspect on each argument before printing it. E.g p input
+
+
+Escape sequences:
+puts '\n\t\"'  # output is \n\t\", most escape sequences are treated literally in single quoted strings.
+
+method # list the metjods are available on an object. E.g puts 42.method, puts "hello".methods
+
+class # list the class of the object. E.g 42.class, "hello".class
+
+to_s .to_i .to_f # convert to a string, integer, float
+
+raise # method to reort any errors., it stops what it's doing and prints your error message, it will exit immediately.
