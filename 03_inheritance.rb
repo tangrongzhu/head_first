@@ -132,4 +132,12 @@ end
 
 class Armadillo < Animal
 
+  def move(destination)
+    puts "#{name} unrolls!"
+    super
+  end
 end
+
+dillo = Armadillo.new
+#dillo.name = "Dillon"
+dillo.move("burrow")

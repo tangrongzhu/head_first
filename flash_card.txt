@@ -15,3 +15,37 @@ class # list the class of the object. E.g 42.class, "hello".class
 to_s .to_i .to_f # convert to a string, integer, float
 
 raise # method to reort any errors., it stops what it's doing and prints your error message, it will exit immediately.
+
+inspect # method converts an object to a debug string.
+class # method tells you which class an object is an instance of.
+methods # method tells you what instance methods an object has.
+instance_variables methods # gives you a list of an object's instance variables.
+
+argument vs parameters:
+1. parameters - you define and use parameters within a method definition.
+e.g def say_hello(name)  -- name is parameter
+2. argument - you provide arguments with method calls.
+e.g say_hello("Marcy") -- "Marcy" is argument.
+3. Each argument you pass with the method call gets stored in a method parameter.
+
+
+命名规则：
+1. variables - use all lowercase letters in variable names. Avoid numbers; they are rarely used. Separate words with underscores.this is call snake case.
+e.g. my_rank = 1
+2. method - method names should be in "snake case": one or more lowercase words, separated by underscores, just like variables.
+e.g. def wag_tail
+3. Class - Ruby class name must begin with a capital letter,letters after the first should be lowercase.If there's more than one word in the name
+,the first letter of each word should be also be capitalized. it's called "camel case"
+e.g. class AddressBook
+
+Formatting numbers 格式序列:
+1. Format sequences - The first argument to format is a string that will be used to format the output. sign(%) will be
+treated as the start of a format sequence. The remaining arguments are used as values.
+e.g. puts format("That will be $%f please.", 0.23*5)
+2. Format sequences types - %s, %i, %f
+3. Format sequence width.
+   E.g. %4.3f,
+   a. 4 is minimum width, if the argument for that format sequence is shorter than the minimum
+width it will be added with spaces until minimum width is reached. the minimum width includes decimal places.
+   b. 3 is width after decimal point.
+   c. f format sequence type.
