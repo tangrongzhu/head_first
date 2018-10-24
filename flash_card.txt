@@ -49,3 +49,9 @@ e.g. puts format("That will be $%f please.", 0.23*5)
 width it will be added with spaces until minimum width is reached. the minimum width includes decimal places.
    b. 3 is width after decimal point.
    c. f format sequence type.
+
+Class Methods
+1. Methods that you can invoke directly on a class, without the need for any instance of that class.
+2. You can put as many Ruby statements as you like in the method body.
+3. You can return a value with the return keyword.
+4. You can optionally define one or more parameters that the method accepts, and you can make the parameters optional by defineing defaults.
