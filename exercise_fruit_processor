@@ -87,7 +87,7 @@ while more_fruit
   print "Input fruit: "
   name, color, weight = gets.chomp.split
   weight = weight.to_i
-  puts "Name: #{name}, color:#{color}, weight: #{weight}"
+  #puts "Name: #{name}, color:#{color}, weight: #{weight}"
 
   if name == "done"
     more_fruit = false
