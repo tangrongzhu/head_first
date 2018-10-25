@@ -7,15 +7,8 @@
 # 4.2 different color (red, yellow or blending)
 #
 #
-
+#
 class Fruit
-
-  def self.apple(weight)
-    Fruit.new("Apple", "Red", weight)
-  end
-  def self.banana(weight)
-    Fruit.new("Banana", "Yellow", weight)
-  end
 
   attr_reader :name, :color, :weight
 
@@ -53,44 +46,78 @@ class Fruit
     puts "Fruit Name: #{name}"
     puts "The fruit is '#{color}' color and weight is #{weight}."
   end
-
 end
 
 class JuiceMachine
 
-  attr_accessor :fruit1, :fruit2
+  attr_accessor :fruit, :juice, :color, :weight
 
-  def initialize(fruit1, fruit2)
-    self.fruit1 = fruit1
-    self.fruit2 = fruit2
-    self.process
-    self.print_juice
+  def initialize(fruit, juice)
+    self.fruit = fruit
+    self.juice = juice
   end
 
   def process
 
-    if fruit1.color == fruit2.color
-     @juice_color = fruit1.color
-    else
-      @juice_color = "blending"
-    end
+    @weight = juice.weight + fruit.weight
 
-    @juice_weight = fruit1.weight + fruit2.weight
+    if juice.color == fruit.color
+      @color = fruit.color
+    else
+      @color = "blending"
+    end
 
   end
 
   def print_juice
-    puts "Juice process with fruits #{fruit1.name} and #{fruit2.name}"
-    puts "Outcome juice color is #{@juice_color}, and weight is #{@juice_weight}"
+    puts "Outcome juice color is #{@color}, and weight is #{@weight}"
   end
 
 end
 
-fruit1 = Fruit.new("Apple","Red",0.5)
-fruit2 = Fruit.new("Banana","yellow",0.5)
-juice = JuiceMachine.new(fruit1, fruit2)
+puts "Welcome to use 'Juice Machine'!"
 
+more_fruit = true
+fruit_number = 0
 
-fruit3 = Fruit.apple(1)
-fruit4 = Fruit.banana(1)
-juice = JuiceMachine.new(fruit3, fruit4)
+while more_fruit
+  print "Please input the fruit name: "
+  name = gets.chomp
+  puts "What's color of the fruit?"
+  color = gets.chomp
+  puts "What's weight of the fruit?"
+  weight = gets.to_i
+
+  fruit = Fruit.new(name, color, weight)
+  # fruit = Fruit.new('Apple', 'Red', 1)
+
+  fruit_number += 1
+
+  print "input more fruits? Press any key to continue, or type 'DONE' if finished."
+  input = gets.chomp
+
+  if fruit_number == 1
+    juice_weight = fruit.weight
+    juice_color = fruit.color
+    juice = fruit
+  else
+    juice = JuiceMachine.new(fruit, juice)
+    juice.process
+  end
+
+  if input == "DONE"
+    more_fruit = false
+  end
+
+end
+
+unless more_fruit
+
+  if fruit_number == 1
+    puts "Outcome juice color is #{juice_color}, and weight is #{juice_weight}"
+  else
+    juice.print_juice
+  end
+
+end
+
