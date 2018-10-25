@@ -70,7 +70,8 @@ class JuiceMachine
   end
 
   def print_juice
-    puts "Outcome juice color is #{@color}, and weight is #{@weight}"
+    puts "Juice is coming ...  (wait for 3 seconds)"
+    puts "#{@weight}g #{@color} juice!"
   end
 
 end
@@ -81,7 +82,7 @@ more_fruit = true
 fruit_number = 0
 
 while more_fruit
-  print "Please input the fruit name: "
+  print "Please input fruit name: "
   name = gets.chomp
   puts "What's color of the fruit?"
   color = gets.chomp
@@ -114,7 +115,8 @@ end
 unless more_fruit
 
   if fruit_number == 1
-    puts "Outcome juice color is #{juice_color}, and weight is #{juice_weight}"
+    puts "Juice is coming ...  (wait for 3 seconds)"
+    puts "#{juice_weight}g #{juice_color} juice!"
   else
     juice.print_juice
   end
