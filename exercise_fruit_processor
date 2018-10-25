@@ -77,37 +77,31 @@ class JuiceMachine
 end
 
 puts "Welcome to use 'Juice Machine'!"
+puts "please put fruit(name color weight) into the juice machine (input `done` to complete it) "
 
 more_fruit = true
 fruit_number = 0
 
 while more_fruit
-  print "Please input fruit name: "
-  name = gets.chomp
-  puts "What's color of the fruit?"
-  color = gets.chomp
-  puts "What's weight of the fruit?"
-  weight = gets.to_i
 
-  fruit = Fruit.new(name, color, weight)
-  # fruit = Fruit.new('Apple', 'Red', 1)
+  print "Input fruit: "
+  name, color, weight = gets.chomp.split
+  weight = weight.to_i
+  puts "Name: #{name}, color:#{color}, weight: #{weight}"
 
-  fruit_number += 1
-
-  print "input more fruits? Press any key to continue, or type 'DONE' if finished."
-  input = gets.chomp
-
-  if fruit_number == 1
-    juice_weight = fruit.weight
-    juice_color = fruit.color
-    juice = fruit
-  else
-    juice = JuiceMachine.new(fruit, juice)
-    juice.process
-  end
-
-  if input == "DONE"
+  if name == "done"
     more_fruit = false
+  else
+    fruit = Fruit.new(name, color, weight)
+    fruit_number += 1
+    if fruit_number == 1
+      juice_weight = fruit.weight
+      juice_color = fruit.color
+      juice = fruit
+    else
+      juice = JuiceMachine.new(fruit, juice)
+      juice.process
+    end
   end
 
 end
