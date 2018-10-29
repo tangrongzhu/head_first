@@ -41,79 +41,75 @@ class Fruit
     self.color = color
     self.weight = weight
   end
-
-  def print_fruit_info
-    puts "Fruit Name: #{name}"
-    puts "The fruit is '#{color}' color and weight is #{weight}."
-  end
 end
 
-class JuiceMachine
-
-  attr_accessor :fruit, :juice, :color, :weight
-
-  def initialize(fruit, juice)
-    self.fruit = fruit
-    self.juice = juice
-  end
-
-  def process
-
-    @weight = juice.weight + fruit.weight
-
-    if juice.color == fruit.color
-      @color = fruit.color
-    else
-      @color = "blending"
-    end
-
-  end
-
-  def print_juice
-    puts "Juice is coming ...  (wait for 3 seconds)"
-    puts "#{@weight}g #{@color} juice!"
-  end
-
+def repeat_input_wrapper
+  fruits = []
+  repeat_input(fruits)
+  return fruits
 end
 
-puts "Welcome to use 'Juice Machine'!"
-puts "please put fruit(name color weight) into the juice machine (input `done` to complete it) "
-
-more_fruit = true
-fruit_number = 0
-
-while more_fruit
+def repeat_input(fruits)
 
   print "Input fruit: "
   name, color, weight = gets.chomp.split
   weight = weight.to_i
-  #puts "Name: #{name}, color:#{color}, weight: #{weight}"
 
   if name == "done"
-    more_fruit = false
+    # do nothing
   else
     fruit = Fruit.new(name, color, weight)
-    fruit_number += 1
-    if fruit_number == 1
-      juice_weight = fruit.weight
-      juice_color = fruit.color
-      juice = fruit
-    else
-      juice = JuiceMachine.new(fruit, juice)
-      juice.process
-    end
+    fruits.push(fruit)
+    repeat_input(fruits)
   end
 
 end
 
-unless more_fruit
+def generate_juice(fruits)
 
-  if fruit_number == 1
-    puts "Juice is coming ...  (wait for 3 seconds)"
-    puts "#{juice_weight}g #{juice_color} juice!"
+  puts "Juice is coming.... in 3 seconds..."
+
+  color = ''
+  weight = 0
+
+  fruits.each do |fruit|
+
+    color = dealwithColor(fruit, color)
+    weight = dealwithWeight(fruit, weight)
+  end
+
+  Juice.new(color, weight)
+end
+
+def dealwithColor(fruit, color)
+  if color == ''
+    color = fruit.color
+  elsif color == fruit.color
+    # do nothing
   else
-    juice.print_juice
+    color = 'blending'
   end
-
 end
 
+def dealwithWeight(fruit, weight)
+  weight += fruit.weight
+end
+
+class Juice
+  attr_accessor :color, :weight
+  def initialize(color, weight)
+    self.color = color
+    self.weight = weight
+  end
+end
+
+def check_juice(juice)
+  print "#{juice.weight}g juice with #{juice.color} color is ready to collect."
+end
+
+puts "Welcome to use 'Juice Machine'!"
+puts "Please put fruit(name color weight) into the juice machine (input `done` to complete it). "
+
+fruits = repeat_input_wrapper
+juice = generate_juice(fruits)
+check_juice(juice)
