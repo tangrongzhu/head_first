@@ -8,7 +8,6 @@
 # 4.2 different color (red, yellow or blending)
 
 
-
 class Fruit
 
   attr_reader :name, :color, :weight
