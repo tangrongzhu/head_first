@@ -41,7 +41,7 @@ employee = Employee.new("Kara Byrd", 4500)
 # employee.name = ""
 # employee.salary = 45000
 employee.print_pay_stub
-employee = Employee.new("kkk",-999)
+employee = Employee.new("kkk",999)
 employee.print_pay_stub
 
 # Format sequence width with floating-point numbers
@@ -78,3 +78,49 @@ end
 engine = Engine.new
 car = Car.new(engine)
 car.rev_engine
+
+class Parent
+
+  attr_accessor :last_name
+
+  def initialize(last_name)
+    @last_name = last_name
+  end
+end
+
+class Child < Parent
+
+end
+
+child = Child.new("Smith")
+puts child.last_name
+
+class Boat
+
+  def initialize(name)
+    @name = name
+    puts "Name: #{@name}"
+  end
+
+end
+
+class PowerBoat < Boat
+
+  attr_accessor :size
+
+  def initialize(name, motor_type, size)
+    super(name)
+    @motor_type = motor_type
+    self.size = size
+  end
+
+  def info
+    puts "Motor Type: #{@motor_type}"
+
+    puts @size
+  end
+end
+
+powerBoat = PowerBoat.new("YK", "kkk", 123)
+powerBoat.size
+powerBoat.info
